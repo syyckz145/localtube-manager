@@ -49,24 +49,6 @@ export default defineBackground(() => {
         console.log(error);
       }
 
-      if (newVideos.length === 1) {
-        browser.notifications.create({
-          type: "image",
-          iconUrl: browser.runtime.getURL("/icon/128.png"),
-          imageUrl: newVideos[0].thumbnailUrl,
-          title: newVideos[0].channelName,
-          message: newVideos[0].title,
-          priority: 2,
-        });
-      } else {
-        browser.notifications.create({
-          type: "basic",
-          iconUrl: browser.runtime.getURL("/icon/128.png"),
-          title: "LocalTube Manager",
-          message: `${newVideos.length} new videos`,
-          priority: 2,
-        });
-      }
     }
   });
 
@@ -109,25 +91,6 @@ export default defineBackground(() => {
           console.log(error);
         }
 
-        // If there's only one new video, show detailed notification
-        if (newVideos.length === 1) {
-          browser.notifications.create({
-            type: "image",
-            iconUrl: browser.runtime.getURL("/icon/128.png"),
-            imageUrl: newVideos[0].thumbnailUrl,
-            title: newVideos[0].channelName,
-            message: newVideos[0].title,
-            priority: 2,
-          });
-        } else {
-          browser.notifications.create({
-            type: "basic",
-            iconUrl: browser.runtime.getURL("/icon/128.png"),
-            title: `${newVideos.length} New Videos`,
-            message: newVideos.map((video) => video.title).join("\n"),
-            priority: 2,
-          });
-        }
       }
     }
   });
